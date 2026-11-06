@@ -1,1 +1,106 @@
 /* Start coding here */
+/* Reset ค่าเริ่มต้น (แก้ไขจาก - เป็น *) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+/* 1. แถบ Header ด้านบนสีเทา */
+.chat-header {
+    background-color: #7d7d7d;
+    color: #ffffff;
+    padding: 16px 24px;
+}
+
+.chat-header h1 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+/* 2. กล่องแสดงข้อความแชทหลัก */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+/* Style กลางของข้อความแชททุกอัน */
+.message {
+    position: relative; /* สำคัญ: เป็นกรอบอ้างอิงให้ปุ่มปิดและหางแหลม */
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+/* 3. ข้อความฝั่งผู้ส่ง (Sent - ชิดขวา) */
+.message.sent {
+    align-self: flex-end; /* ดันข้อความไปชิดขวา */
+}
+
+/* สีพื้นหลังของข้อความฝั่งขวา */
+.message.sent.green {
+    background-color: #00c800; /* สีเขียวสด */
+    color: #000000;
+}
+
+.message.sent.gray {
+    background-color: #e5e5ea; /* สีเทาอ่อน */
+    color: #000000;
+    padding-right: 40px; /* เว้นพื้นที่ฝั่งขวาไม่ให้ข้อความทับปุ่ม x */
+}
+
+/* 4. ข้อความฝั่งผู้รับ (Received - ชิดซ้าย) */
+.message.received {
+    align-self: flex-start; /* ดันข้อความไปชิดซ้าย */
+    background-color: #7d7d7d; /* สีเทาเข้ม */
+    color: #ffffff;
+    width: 200px;
+}
+
+/* ==========================================================
+   5. เพิ่มส่วนหางแหลมชี้ขึ้น (ใช้กับข้อความสีเขียว)
+   ========================================================== */
+.message.sent.green::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 10px solid #00c800;
+}
+
+/* ==========================================================
+   6. เพิ่มส่วนปุ่มกากบาท x (ใช้กับข้อความสีเทา)
+   ========================================================== */
+.close-btn {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    background-color: #b0b3b8;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
